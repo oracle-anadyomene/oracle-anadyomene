@@ -1,0 +1,60 @@
+<form id="quizForm">
+  <div id="question1" class="question">
+    <p>1. Quelle est la capitale de la France ?</p>
+    <input type="radio" name="q1" value="1"> Paris<br>
+    <input type="radio" name="q1" value="0"> Londres<br>
+    <button type="button" onclick="nextQuestion(1)">Suivant</button>
+  </div>
+
+  <div id="question2" class="question" style="display:none;">
+    <p>2. Quelle est la couleur du ciel ?</p>
+    <input type="radio" name="q2" value="1"> Bleu<br>
+    <input type="radio" name="q2" value="0"> Rouge<br>
+    <button type="button" onclick="nextQuestion(2)">Suivant</button>
+  </div>
+
+  <!-- Ajoute d'autres questions de manière similaire -->
+  
+  <div id="result" style="display:none;">
+    <p>Merci d'avoir répondu !</p>
+    <div id="finalResult"></div>
+  </div>
+</form>
+
+<script>
+  var score = 0;
+  var totalQuestions = 2; // Remplace par le nombre total de questions
+
+  function nextQuestion(questionNumber) {
+    var currentQuestion = document.getElementById('question' + questionNumber);
+    var nextQuestion = document.getElementById('question' + (questionNumber + 1));
+
+    // Vérifier la réponse et ajouter des points
+    var selectedAnswer = document.querySelector('input[name="q' + questionNumber + '"]:checked');
+    if (selectedAnswer) {
+      score += parseInt(selectedAnswer.value);
+    }
+
+    // Masquer la question actuelle et afficher la suivante
+    currentQuestion.style.display = 'none';
+    if (nextQuestion) {
+      nextQuestion.style.display = 'block';
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    var resultMessage = '';
+    if (score === totalQuestions) {
+      resultMessage = 'Félicitations, vous avez obtenu un score parfait !';
+    } else if (score >= totalQuestions / 2) {
+      resultMessage = 'Bon travail, vous avez un bon score !';
+    } else {
+      resultMessage = 'Continuez à pratiquer, vous pouvez faire mieux !';
+    }
+
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('finalResult').innerHTML = resultMessage;
+  }
+</script>
