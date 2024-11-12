@@ -102,10 +102,14 @@
 
   function showResult() {
     var resultMessage = '';
-    if (score >= 6) {
-      resultMessage = "L'araignée tisse des secrets. ";
+    if (score >= 9) {
+      resultMessage = "Le hibou lit le rêve des arbres endormis.";
+    } else if (score >= 6) {
+      resultMessage = "L'araignée tisse des secrets.";
     } else if (score >= totalQuestions / 2) {
       resultMessage = "Le serpent ne se hâte jamais.";
+    } else if (score >= 3) {
+      resultMessage = "Quand le vent parle, les loups écoutent.";
     } else {
       resultMessage = "La panthère s'assoit dans l'ombre.";
     }
